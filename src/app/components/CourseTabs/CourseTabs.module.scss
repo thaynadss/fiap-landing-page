@@ -1,0 +1,293 @@
+@use "../../styles/variables.scss" as colors;
+@import "../../styles/breakpoints.scss";
+
+.container {
+  width: 100%;
+  padding: 4rem 10rem;
+  background: #000;
+  color: colors.$foreground;
+
+  @include respond-to("xl") {
+    padding: 4rem 5rem;
+  }
+
+  @include respond-to("lg") {
+    padding: 4rem 2rem;
+  }
+
+  @include respond-to("md") {
+    padding: 0 1rem;
+  }
+}
+
+.title {
+  font-size: 4rem;
+  color: var(--foreground);
+  font-weight: normal;
+
+  @include respond-to("md") {
+    font-size: 3rem;
+    margin-bottom: 1rem;
+  }
+}
+
+.tabTitle {
+  font-size: 2.5rem;
+  color: var(--foreground);
+  font-weight: normal;
+  margin-block: 4rem;
+
+  @include respond-to("md") {
+    display: none;
+  }
+}
+
+.subtitle {
+  font-size: 1.2rem;
+  color: colors.$primary-default;
+  font-weight: normal;
+}
+
+.desktopTabs {
+  width: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+
+}
+
+.tabHeaders {
+    gap: 4rem;
+    display: flex;
+  position: relative;
+
+  
+  @include respond-to("md") {
+    display: none;
+  }
+}
+
+.activeTabIndicator {
+  position: absolute;
+  top: 0;
+  left: 0;
+  height: 2px;
+  background: colors.$primary-default;
+  transition: transform 0.3s ease, width 0.3s ease;
+}
+
+.tabButton {
+  background: none;
+  border: none;
+  color: colors.$gray-light;
+  font-size: 1rem;
+  padding: 0.7rem 0;
+  position: relative;
+  cursor: pointer;
+  transition: opacity 0.3s ease;
+  text-transform: uppercase;
+  height: 40px;
+
+  &::before {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 2rem;
+    height: 4px;
+    background: colors.$primary-default;
+    transform: scaleX(0);
+    transition: transform 0.6s ease;
+    transform-origin: left;
+  }
+
+  &.active {
+    opacity: 1;
+    color: colors.$foreground;
+
+    &::before {
+      transform: scaleX(1);
+    }
+  }
+}
+
+.tabContents {
+  position: relative;
+  min-height: 400px;
+
+  @include respond-to("md") {
+    display: none;
+  }
+}
+
+.tabContent {
+  position: absolute;
+  width: 60%;
+  opacity: 0;
+  visibility: hidden;
+  transform: translateY(-20px);
+  transition: opacity 0.3s ease, transform 0.3s ease, visibility 0.3s ease;
+
+  .courseItem {
+    opacity: 0;
+    transform: translateY(-10px);
+    transition: opacity 0.6s ease, transform 0.6s ease;
+
+    @for $i from 1 through 10 {
+      &:nth-child(#{$i}) {
+        transition-delay: #{$i * 0.08}s;
+      }
+    }
+  }
+
+  &.active {
+    opacity: 1;
+    visibility: visible;
+    transform: translateY(0);
+
+    .courseItem {
+      opacity: 1;
+      transform: translateY(0);
+    }
+  }
+
+  &:not(.active) {
+    .courseItem {
+      opacity: 0;
+      transform: translateY(10px);
+    }
+  }
+}
+
+.mobileAccordion {
+  display: none;
+
+  @include respond-to("md") {
+    display: block;
+    margin-top: 1rem;
+  }
+}
+
+.accordionItem {
+  border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+.accordionHeader {
+  width: 100%;
+  background: none;
+  border: none;
+  color: colors.$foreground;
+  font-size: 1.54rem;
+  padding: 1.5rem 0;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  cursor: pointer;  
+  text-transform: uppercase;    
+}
+
+.expandIcon {
+  position: relative;
+  width: 42px;
+  height: 42px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border: 1px solid colors.$border-primary;
+  border-radius: 50%;
+
+  .horizontalLine,
+  .verticalLine {
+    position: absolute;
+    background: colors.$primary-default;
+    transition: transform 0.6s ease;
+  }
+
+  .horizontalLine {
+    width: 16px;
+    height: 3px;
+  }
+
+  .verticalLine {
+    width: 3px;
+    height: 16px;
+    transform: scaleY(1);
+  }
+}
+
+.expanded {
+  .expandIcon {
+    background-color: colors.$primary-default;
+
+    .horizontalLine,
+    .verticalLine {
+      background: #000;
+    }
+
+    .verticalLine {
+      transform: scaleY(0);
+    }
+  }
+
+  .accordionContent {
+    max-height: 1000px;
+    opacity: 1;
+    padding: 1rem 0 2rem;
+  }
+}
+
+.accordionContent {
+  max-height: 0;
+  opacity: 0;
+  overflow: hidden;
+  transition: all 0.5s ease;
+  padding: 0;
+}
+
+.courseItem {
+  display: flex;
+  gap: 2rem;
+  align-items: center;
+  padding-block: 1rem;
+  border-bottom: 1px solid colors.$foreground;
+  transition: border-color 0.3s ease;
+
+  .courseType {
+    font-size: 0.875rem;
+    font-weight: 500;
+    letter-spacing: 0.5px;
+    text-transform: uppercase;
+    color: colors.$gray-light;
+    transition: color 0.3s ease;
+
+    @include respond-to("md") {
+      font-size: 0.6rem;
+    }
+  }
+
+  .courseTitle {
+    font-size: 1.3rem;
+    color: colors.$gray-light;
+    transition: color 0.3s ease;
+
+    @include respond-to("md") {
+      font-size: 1rem;
+      color: colors.$foreground;
+    }
+  }
+
+  &:hover {
+    border-color: colors.$primary-default;
+
+    .courseTitle,
+    .courseType {
+      color: colors.$primary-default;
+    }
+  }
+
+  @include respond-to("md") {
+    flex-direction: column-reverse;
+    align-items: flex-start;
+    gap: 0.2rem;
+  }
+}

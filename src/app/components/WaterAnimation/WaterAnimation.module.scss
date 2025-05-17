@@ -1,0 +1,17 @@
+@import "../../styles/index.scss";
+
+.container {
+  width: 100vw;
+  height: 100vh;
+  position: relative;
+  top: 0;
+  left: 0;
+
+  img {
+    transition: opacity 0.3s ease-in-out;
+  }
+
+  @include respond-to("lg") {
+    display: none;
+  }
+} 

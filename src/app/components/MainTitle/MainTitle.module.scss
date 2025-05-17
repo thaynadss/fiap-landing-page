@@ -1,0 +1,96 @@
+@use '../../styles/index.scss' as *;
+
+.titleContainer {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 100%;
+    position: relative;
+    padding: 2rem;
+    flex-direction: column;
+    margin-bottom: 10rem;
+  
+    @include respond-to("sm") {
+      margin-bottom: 5rem;
+    }
+  
+    &::before {
+      content: 'SOBRE';
+      position: absolute;
+      font-size: 20rem;
+      font-weight: 900;
+      opacity: 0.03;
+      user-select: none;
+      z-index: 0;
+      text-align: center;
+      word-break: break-word;
+  
+      @include respond-to("xl") {
+        font-size: 16rem;
+      }
+  
+      @include respond-to("lg") {
+        font-size: 10rem;
+      }
+  
+      @include respond-to("md") {
+        font-size: 12rem;
+      }
+  
+      @include respond-to("sm") {
+        font-size: 8rem;
+        letter-spacing: -0.1rem;
+        text-align: right;
+        padding-right: 2rem;
+        line-height: 1;
+      }
+    }
+  }
+  
+  .title {
+    font-size: clamp(3rem, 8vw, 6rem);
+    display: flex;
+    color: $foreground;
+    flex-direction: column;
+    letter-spacing: -0.5%;
+    font-weight: 400;
+    position: relative;
+    z-index: 1;
+    width: 100%;
+    max-width: 1200px;
+    align-self: center;
+    justify-content: center;
+    margin-inline: auto;
+    
+    span {
+      display: block;
+      white-space: nowrap;
+      
+      &:first-child {
+        text-align: right;
+        padding-right: 5%;
+      }
+  
+      &:last-child {
+        text-align: left;
+        margin-left: 6rem;
+  
+        @include respond-to("lg") {
+          margin-left: 2rem;
+        }
+  
+        @include respond-to("sm") {
+          margin-left: 20%;
+        }
+  
+        @include respond-to("xs") {
+          margin-left: -1rem;
+        }
+      }
+    }
+  
+    @include respond-to("sm") {
+      font-size: clamp(1.8rem, 5vw, 2.5rem);
+    }
+  }
+  

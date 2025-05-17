@@ -1,0 +1,139 @@
+@use "../../styles/variables.scss" as colors;
+@import "../../styles/breakpoints.scss";
+
+.container {
+  width: 100%;
+  padding: 4rem 10rem;
+  background: #000;
+  color: colors.$foreground;
+
+  @include respond-to("xl") {
+    padding: 4rem 5rem;
+  }
+
+  @include respond-to("lg") {
+    padding: 4rem 2rem;
+  }
+
+  @include respond-to("md") {
+    padding: 0 1rem 4rem 1rem;
+  }
+}
+
+.title {
+  font-size: 4rem;
+  color: colors.$foreground;
+  font-weight: normal;
+  margin-bottom: 0.5rem;
+
+  @include respond-to("md") {
+    font-size: 3rem;
+  }
+}
+
+.subtitle {
+  font-size: 1.2rem;
+  color: colors.$primary-default;
+  font-weight: normal;
+  margin-bottom: 4rem;
+}
+
+.faqGrid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 2rem;
+
+  @include respond-to("lg") {
+    grid-template-columns: repeat(2, 1fr);
+  }
+
+  @include respond-to("md") {
+    gap: 0;
+    grid-template-columns: 1fr;
+  }
+}
+
+.faqItem {
+  position: relative;
+  padding: 2rem 0;
+  cursor: pointer;
+  overflow: hidden;
+
+  &::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 2rem;
+    height: 1px;
+    background: colors.$gray-light;
+    transition: all 0.6s ease;
+  }
+
+  &::after {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 0;
+    height: 2px;
+    background: colors.$primary-default;
+    transition: width 0.6s ease;
+    transform-origin: left;
+  }
+
+  &.active {
+    &::before {
+      width: 0;
+    }
+
+    &::after {
+      width: 100%;
+    }
+
+    .question {
+      color: colors.$foreground;
+    }
+
+    .answer {
+      opacity: 1;
+      transform: translateY(0);
+      visibility: visible;
+
+      @include respond-to("md") {
+        height: auto;
+        margin-top: 1rem;
+        opacity: 1;
+        overflow: visible;
+      }
+    }
+  }
+}
+
+.question {
+  font-size: 1.25rem;
+  color: colors.$gray-light;
+  font-weight: normal;
+  transition: color 0.6s ease;
+}
+
+.answer {
+  font-size: 1rem;
+  color: colors.$gray-light;
+  line-height: 1.5;
+  opacity: 0;
+  transform: translateY(-10px);
+  visibility: hidden;
+  transition: all 0.6s ease;
+  margin-top: 1rem;
+  
+  @include respond-to("md") {
+    height: 0;
+    margin: 0;
+    padding: 0;
+    opacity: 0;
+    margin-top: 0;
+    overflow: hidden;
+    transition: all 0.6s ease;
+  }
+} 
