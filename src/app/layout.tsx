@@ -7,7 +7,7 @@ export const metadata: Metadata = {
   description: "Cursos Presenciais e On-line: Graduação, Pós-Graduação/MBA e Cursos de Curta Duração. FIAP é Tecnologia, Inovação e Empreendedorismo.",
 };
 
-export function RootLayout({
+export default function RootLayout({
   children,
 }: Readonly<{
   children: React.ReactNode;
