@@ -1,6 +1,6 @@
 import styles from "./MainTitle.module.scss";
 
-export default function MainTitle() {
+export function MainTitle() {
   return (
     <div className={styles.titleContainer}>
       <h1 className={styles.title}>

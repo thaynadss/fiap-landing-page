@@ -1,16 +1,7 @@
 "use client";
-import styles from "./CourseTabs.module.scss";
 import { useState } from "react";
-
-type Course = {
-  title: string;
-  type: string;
-};
-
-type Tab = {
-  title: string;
-  courses: Course[];
-};
+import styles from "./CourseTabs.module.scss";
+import type { Tab } from "./CourseTabs.interface";
 
 const TABS: Tab[] = [
   {
@@ -64,7 +55,6 @@ export function CourseTabs() {
           <h5 className={styles.title}>Cursos</h5>
           <h6 className={styles.subtitle}>Cursos de Curta Duração</h6>
         </div>
-
         <div className={styles.tabHeaders}>
           {TABS.map((tab, index) => (
             <button
@@ -79,7 +69,6 @@ export function CourseTabs() {
           ))}
         </div>
       </div>
-
       <div className={styles.tabsContainer}>
         <div>
           <div className={styles.tabContents}>
@@ -101,8 +90,6 @@ export function CourseTabs() {
             ))}
           </div>
         </div>
-
-        {/* Mobile Accordion */}
         <div className={styles.mobileAccordion}>
           {TABS.map((tab, index) => (
             <div

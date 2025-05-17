@@ -1,12 +1,8 @@
 "use client";
 import { useState } from "react";
 import styles from "./Faq.module.scss";
-import { BREAKPOINTS } from "@/app/styles/breakpoints";
-
-type FaqItem = {
-  question: string;
-  answer: string;
-};
+import type { FaqItem } from "./Faq.interface";
+import { BREAKPOINTS } from "@/app/constants/breakpoints";
 
 const FAQ_ITEMS: FaqItem[] = [
   {

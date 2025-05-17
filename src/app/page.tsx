@@ -1,7 +1,7 @@
-import RootLayout from "./layout";
+import { RootLayout } from "./layout";
 import styles from "./page.module.scss";
 import { Faq } from "./components/Faq/Faq";
-import MainTitle from "./components/MainTitle/MainTitle";
+import { MainTitle } from "./components/MainTitle/MainTitle";
 import { CourseInfo } from "./components/CourseInfo/CourseInfo";
 import { CourseTabs } from "./components/CourseTabs/CourseTabs";
 import { SkillsInfo } from "./components/SkillsInfo/SkillsInfo";
